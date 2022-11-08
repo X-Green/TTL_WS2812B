@@ -20,14 +20,13 @@ def colorToMessage(colorData):
     # print(hex(totalColor))
     # print(bin(totalColor))
 
-
-
     constMessageMask = 0b0100100  # LSB First
 
     for i in range(8):
         i_offset = i * 3
-        msg = constMessageMask + (getBit(totalColor, 23 - i_offset)) + (getBit(totalColor, 23 - (i_offset + 1)) << 3) + (getBit(totalColor, 23 - (i_offset + 2)) << 6)
- 
+        msg = constMessageMask + (getBit(totalColor, 23 - i_offset)) + (
+                    getBit(totalColor, 23 - (i_offset + 1)) << 3) + (getBit(totalColor, 23 - (i_offset + 2)) << 6)
+
         print(bin(msg))
         print(bin(~msg & 0x7f))
 
@@ -36,7 +35,6 @@ def colorToMessage(colorData):
 
 
 msgs = colorToMessage(testColorData)
-
 
 try:
     # 端口，GNU / Linux上的/ dev / ttyUSB0 等 或 Windows上的 COM3 等
@@ -50,7 +48,7 @@ try:
                         bytesize=7, parity='N', stopbits=1)
 
     # 写数据
-    result = ser.write(bytes(msgs)*10)
+    result = ser.write(bytes(msgs) * 10)
     print("写总字节数:", result)
 
     ser.close()  # 关闭串口
@@ -58,12 +56,9 @@ try:
 except Exception as e:
     print(e)
 
-
 """
 import serial
 import serial.tools.list_ports
 port_list = list(serial.tools.list_ports.comports())
 print(port_list[2])
 """
-
-
