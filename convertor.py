@@ -1,7 +1,7 @@
 import numpy
 from numpy import array
 
-import test
+import test_legacy
 
 
 def color_to_bit_array(rgb_matrix: numpy.ndarray):
@@ -22,6 +22,7 @@ def color_bit_array_to_msg_bytes(color_bit_array: numpy.ndarray):
 
 
 if __name__ == "__main__":
+    # test
     source = array(
         [
             [0xEA, 0b01101011, 0x0D],
@@ -36,4 +37,4 @@ if __name__ == "__main__":
         )
     ))
 
-    # print(test.colorToMessage(source[0]))
+    print(test_legacy.colorToMessage(source[0]))
